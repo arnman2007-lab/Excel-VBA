@@ -49,7 +49,7 @@ Public Sub HandleSelectionChange(ByVal Target As Excel.Range)
 '---------------------------------Edit Below--------------------------------------
 '---------------------------------------------------------------------------------
 
-If PanelForm.CodeButton.Caption = "Off" Then
+If ToggleStates("CodeButton") = "Off" Then
 
 Else
 'Fluke 771 DC mA Clamp Meter
@@ -179,14 +179,14 @@ Else
 
             Case Else
                 '-------------------Clicking anywhere else---------------------
-                If PanelForm.CodeButton.Caption = "Off" Then
+                If ToggleStates("CodeButton") = "Off" Then
 
-                ElseIf PanelForm.CodeButton.Caption = "Operating" Then
+                ElseIf ToggleStates("CodeButton") = "Operating" Then
                     ButtonState PanelForm, "CodeButton", "Standby"
                     CalibClearStatus "Standby"
                     CalibClearStatus "Close"
                     DMMClearStatus "Close"
-                ElseIf PanelForm.CodeButton.Caption = "Standby" Then
+                ElseIf ToggleStates("CodeButton") = "Standby" Then
 
                 End If
 
