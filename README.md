@@ -15,11 +15,43 @@ Each calibration workbook reads from this central `DeviceInfo.csv`.
 
 ## Starting a New Automation Project
 
-1. Copy `Special_WorkBooks/BackEnd Template.xlsm` to a new project folder
-2. Rename it for your DUT (e.g., `Fluke 87V Multimeter.xlsm`)
-3. Copy VBA modules from an existing project as a starting point
-4. Customize `SetupArrays.bas` for your datasheet row ranges
-5. Add hookup diagrams to `Images/`
+### Initial Setup
+1. Create new project folder (e.g., `Fluke_87V/`)
+2. Copy `Special_WorkBooks/BackEnd Template.xlsm` to the new folder
+3. Rename it for your DUT (e.g., `Fluke 87V Multimeter.xlsm`)
+4. Create `Modules/`, `UserForms/`, `Images/` subfolders
+5. Copy VBA modules from a similar existing project
+
+### Required Module Customizations
+
+| Module | What to Customize |
+|--------|-------------------|
+| **WSSetup.bas** | `make`, `Model`, `UnitDesc` - MUST match the DUT |
+| **SetupArrays.bas** | `ranges(Tab1)` - row ranges for each test section |
+| **DatasheetCode.bas** | `Select Case Target.Address` - cell addresses and calibrator commands |
+| **TestSectionNumbers.bas** | Test section cases (1000=operational, 6000=mA, etc.) |
+
+### Required Sheet Code (NOT .bas files)
+
+**ThisWorkbook module:**
+```vba
+Private Sub Workbook_Open()
+    SetupWS
+End Sub
+```
+
+**Datasheet sheet module:**
+```vba
+Private Sub Worksheet_SelectionChange(ByVal Target As Range)
+    HandleSelectionChange Target
+End Sub
+```
+
+### Final Steps
+1. Import all `.bas` and `.frm` files in Excel VBA Editor
+2. Add the ThisWorkbook and Datasheet sheet code above
+3. Add hookup diagrams to `Images/[DUT Name]/[Calibrator Model]/`
+4. Test with workstation setup configured
 
 ## Projects
 

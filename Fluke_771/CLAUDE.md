@@ -39,10 +39,41 @@ Place hookup diagrams in `Images/Fluke 771/[calibrator model]/`:
 - `mA Main Hookup 5502A.jpg`
 - `mA Main Hookup 5520A.jpg`
 
-## VBA Import Instructions
+## VBA Setup Instructions
+
+### Step 1: Convert to Macro-Enabled
 1. Open the xlsx file in Excel
 2. Save As -> Excel Macro-Enabled Workbook (.xlsm)
-3. Press Alt+F11 to open VBA Editor
-4. File -> Import File -> select all .bas files from Modules/
-5. File -> Import File -> select all .frm files from UserForms/
-6. Save the workbook
+
+### Step 2: Import Modules (Alt+F11)
+1. File -> Import File -> select all `.bas` files from `Modules/`
+2. File -> Import File -> select all `.frm` files from `UserForms/`
+
+### Step 3: Add ThisWorkbook Code (REQUIRED)
+1. In Project Explorer, double-click **ThisWorkbook**
+2. Paste this code:
+```vba
+Private Sub Workbook_Open()
+    SetupWS
+End Sub
+```
+
+### Step 4: Add Datasheet Sheet Code (REQUIRED)
+1. In Project Explorer, double-click **Datasheet** (under Microsoft Excel Objects)
+2. Paste this code:
+```vba
+Private Sub Worksheet_SelectionChange(ByVal Target As Range)
+    HandleSelectionChange Target
+End Sub
+```
+
+### Step 5: Save the workbook
+
+## Key Modules to Customize for New Projects
+
+| Module | What to Change |
+|--------|----------------|
+| `WSSetup.bas` | `make`, `Model`, `UnitDesc` - MUST match the DUT |
+| `SetupArrays.bas` | `ranges(Tab1)` - row ranges for test points |
+| `DatasheetCode.bas` | `Select Case Target.Address` - cell addresses and calibrator commands |
+| `TestSectionNumbers.bas` | Test section cases (1000, 6000, etc.) |
