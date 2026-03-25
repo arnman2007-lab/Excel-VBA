@@ -10,10 +10,10 @@ Function GetFullPrinter(sPtrName As String) As String
     GetFullPrinter = sPtrName & " on " & vPort(1)
 End Function
 
-Function FolderExists(ByVal FolderPath As String) As Boolean
+Function FolderExists(ByVal folderPath As String) As Boolean
     ' Check if a folder exists
     On Error Resume Next
-    FolderExists = (GetAttr(FolderPath) And vbDirectory) = vbDirectory
+    FolderExists = (GetAttr(folderPath) And vbDirectory) = vbDirectory
     On Error GoTo 0
 End Function
 

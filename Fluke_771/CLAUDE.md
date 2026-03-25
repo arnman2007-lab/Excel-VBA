@@ -48,26 +48,19 @@ Place hookup diagrams in `Images/Fluke 771/[calibrator model]/`:
 ### Step 2: Import Modules (Alt+F11)
 1. File -> Import File -> select all `.bas` files from `Modules/`
 2. File -> Import File -> select all `.frm` files from `UserForms/`
+3. File -> Import File -> select all `.cls` files from `Sheets/`
 
-### Step 3: Add ThisWorkbook Code (REQUIRED)
-1. In Project Explorer, double-click **ThisWorkbook**
-2. Paste this code:
-```vba
-Private Sub Workbook_Open()
-    SetupWS
-End Sub
-```
+### Step 3: Sheet Code Mapping
+The `.cls` files in `Sheets/` contain code for specific sheets:
 
-### Step 4: Add Datasheet Sheet Code (REQUIRED)
-1. In Project Explorer, double-click **Datasheet** (under Microsoft Excel Objects)
-2. Paste this code:
-```vba
-Private Sub Worksheet_SelectionChange(ByVal Target As Range)
-    HandleSelectionChange Target
-End Sub
-```
+| File | Sheet Name | What It Does |
+|------|------------|--------------|
+| **ThisWorkbook.cls** | ThisWorkbook | `Workbook_Open` - loads DeviceInfo.csv, initializes everything |
+| **Sheet1.cls** | Datasheet | `Worksheet_SelectionChange` → calls `HandleSelectionChange` |
+| **wsInfo.cls** | Information | `Worksheet_Change` (trims values), `GetCommPorts_Click` |
+| **Sheet5.cls** | Buttons And Code | Button handlers for editing modules |
 
-### Step 5: Save the workbook
+### Step 4: Save the workbook
 
 ## Key Modules to Customize for New Projects
 

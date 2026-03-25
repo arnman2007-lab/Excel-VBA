@@ -9,7 +9,7 @@ Attribute VB_Name = "PointtoModule"
    '     .VBComponents(ModuleName).CodeModule.CodePane.show
 
 'End Sub
-Sub OpenModule(ModuleName As String)
+Sub OpenModule(moduleName As String)
     Dim vbComp As VBComponent
     Dim found As Boolean
     
@@ -20,7 +20,7 @@ Sub OpenModule(ModuleName As String)
     
     ' Look only in the active workbook's VBProject
     For Each vbComp In ActiveWorkbook.VBProject.VBComponents
-        If vbComp.Name = ModuleName Then
+        If vbComp.Name = moduleName Then
             vbComp.CodeModule.CodePane.show
             found = True
             Exit For
@@ -28,7 +28,7 @@ Sub OpenModule(ModuleName As String)
     Next vbComp
     
     If Not found Then
-        MsgBox "Module or UserForm '" & ModuleName & "' was not found in " & ActiveWorkbook.Name, vbExclamation
+        MsgBox "Module or UserForm '" & moduleName & "' was not found in " & ActiveWorkbook.Name, vbExclamation
     End If
 End Sub
 
@@ -62,4 +62,6 @@ Sub OpenUserFormCode(FormName As String)
         MsgBox "UserForm '" & FormName & "' was not found in " & ActiveWorkbook.Name, vbExclamation
     End If
 End Sub
+
+
 

@@ -31,21 +31,16 @@ Each calibration workbook reads from this central `DeviceInfo.csv`.
 | **DatasheetCode.bas** | `Select Case Target.Address` - cell addresses and calibrator commands |
 | **TestSectionNumbers.bas** | Test section cases (1000=operational, 6000=mA, etc.) |
 
-### Required Sheet Code (NOT .bas files)
+### Required Sheet Code (.cls files in Sheets/ folder)
 
-**ThisWorkbook module:**
-```vba
-Private Sub Workbook_Open()
-    SetupWS
-End Sub
-```
+| File | Sheet | Purpose |
+|------|-------|---------|
+| **ThisWorkbook.cls** | ThisWorkbook | `Workbook_Open` - loads DeviceInfo.csv, initializes standards |
+| **Sheet1.cls** | Datasheet | `Worksheet_SelectionChange` → `HandleSelectionChange` |
+| **wsInfo.cls** | Information | `Worksheet_Change` (trims), button handlers |
+| **Sheet5.cls** | Buttons And Code | Buttons to open modules in VBA editor |
 
-**Datasheet sheet module:**
-```vba
-Private Sub Worksheet_SelectionChange(ByVal Target As Range)
-    HandleSelectionChange Target
-End Sub
-```
+Import these `.cls` files via File → Import in VBA Editor.
 
 ### Final Steps
 1. Import all `.bas` and `.frm` files in Excel VBA Editor
@@ -68,4 +63,5 @@ Each project folder contains:
 - `.xlsm` files - Excel workbooks with VBA macros
 - `Modules/` - Exported VBA module files (.bas)
 - `UserForms/` - Exported VBA userform files (.frm, .frx)
+- `Sheets/` - Exported sheet/workbook code (.cls)
 - `Images/` - Equipment hookup diagrams
