@@ -1,0 +1,4 @@
+Type,Make,Model,Serial,GPIB,Scope
+Calibrator,FLUKE,5500A,7345005,GPIB0::4::INSTR,0 
+DMM,HP,3458A,Unknown,GPIB0::22::INSTR,
+Counter,PHILIPS,PM6681,0,,
