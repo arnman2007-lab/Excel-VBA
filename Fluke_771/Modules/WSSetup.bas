@@ -6,8 +6,8 @@ Sub SetupWS()
 
     ' Change the Make, Model, and Description Here
     make = "Fluke"
-    Model = "789"
-    UnitDesc = "Processmeter"
+    Model = "771"
+    UnitDesc = "Milliamp Process Clamp Meter"
 
     ' Tab Names
     Tab1 = "Datasheet"

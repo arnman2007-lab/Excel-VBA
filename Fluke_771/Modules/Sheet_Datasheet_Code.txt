@@ -1,0 +1,11 @@
+' ============================================================
+' THIS CODE GOES IN THE DATASHEET SHEET MODULE (NOT A .BAS FILE)
+' ============================================================
+' In VBA Editor:
+' 1. Double-click "Datasheet" sheet in Project Explorer (left panel)
+' 2. Paste this code into that sheet's code window
+' ============================================================
+
+Private Sub Worksheet_SelectionChange(ByVal Target As Range)
+    HandleSelectionChange Target
+End Sub
